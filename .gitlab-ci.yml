@@ -4,6 +4,7 @@ stages:
   - install
   - validation
   - build
+  - deploy
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -40,7 +41,7 @@ jest:
     - npm test
 
 
-build-job:
+build:
   stage: build
   script:
     - npm run build
@@ -51,3 +52,12 @@ build-job:
   artifacts:
     paths:
       - out/
+
+deploy:
+  stage: deploy
+  dependencies: 
+    - build
+  script:
+    -  npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
