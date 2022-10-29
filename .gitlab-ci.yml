@@ -1,4 +1,4 @@
-image: node:latest
+image: node: 16.3.0 #full version tag,
 
 stages:
   - install
@@ -7,7 +7,9 @@ stages:
   - deploy
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
+  key: 
+    files: 
+      - package-lock.json
   paths:
     - node_modules/
 
