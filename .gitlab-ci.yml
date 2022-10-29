@@ -1,9 +1,9 @@
 image: node:latest
 
 stages: 
-  install
-  validation
-  build
+  - install
+  - validation
+  - build
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
