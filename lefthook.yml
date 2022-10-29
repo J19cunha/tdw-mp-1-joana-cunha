@@ -2,10 +2,8 @@ pre-commit:
   parallel: true
   commands:
     prettier:
-      glob: "*.{js,ts,jsx,tsx}"
       run: npx prettier --write .
     lint:
-      glob: "*.{js,ts,jsx,tsx}"
       run: "npm run lint"
     test:
       run: npm test
@@ -14,10 +12,8 @@ pre-push:
   parallel: true
   commands:
     prettier:
-      glob: "*.{js,ts,jsx,tsx}"
       run: npx prettier --write .
     lint:
-      glob: "*.{js,ts,jsx,tsx}"
       run: "npm run lint"
     test:
       run: npm test
