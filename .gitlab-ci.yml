@@ -1,4 +1,4 @@
-image: node: 16.3.0 #full version tag,
+image: node:16.3.0 #full version tag,
 
 stages:
   - install
