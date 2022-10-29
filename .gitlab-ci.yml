@@ -11,7 +11,7 @@ cache:
     - node_modules/
 
 install:
-  stage: intall
+  stage: install
   script: 
     - npm install
   artifacts:
