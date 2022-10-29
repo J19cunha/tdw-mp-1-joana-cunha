@@ -1,6 +1,6 @@
 image: node:latest
 
-stages: 
+stages:
   - install
   - validation
   - build
@@ -13,7 +13,7 @@ cache:
 
 install:
   stage: install
-  script: 
+  script:
     - npm install
   artifacts:
     paths:
@@ -23,14 +23,14 @@ lint:
   stage: validation
   dependencies:
     - install
-  script: 
+  script:
     - npm run lint
 
 format:
   stage: validation
   dependencies:
     - install
-  script: 
+  script:
     - npx prettier --write .
 
 jest:
@@ -40,13 +40,12 @@ jest:
   script:
     - npm test
 
-
 build:
   stage: build
   script:
     - npm run build
   rules:
-    - if: $CI_COMMIT_REF_NAME == 'main' 
+    - if: $CI_COMMIT_REF_NAME == 'main'
       when: on_success
       allow_failure: true
   artifacts:
@@ -55,9 +54,9 @@ build:
 
 deploy:
   stage: deploy
-  dependencies: 
+  dependencies:
     - build
   script:
-    -  npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
