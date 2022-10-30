@@ -1,0 +1,38 @@
+version: 2.1
+
+jobs:
+  run_tests:
+    docker:
+      - image: circleci/node:16
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install npm dependencies
+          command: npm install
+
+      - run:
+          name: run lint
+          command: npm run lint
+
+      - run:
+          name: run prettier
+          command: npx prettier --write .
+
+      - run:
+          name: run jest
+          command: npm test
+
+      - run:
+          command: npm run build
+          name: Build app
+
+      - run:
+          name: deploy
+          command: npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+
+workflows: #run order
+  test_build_deply:
+    jobs:
+      - run_tests

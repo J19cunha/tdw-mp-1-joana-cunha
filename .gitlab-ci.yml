@@ -7,8 +7,8 @@ stages:
   - deploy
 
 cache:
-  key: 
-    files: 
+  key:
+    files:
       - package-lock.json
   paths:
     - node_modules/
