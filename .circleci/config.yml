@@ -25,8 +25,9 @@ jobs:
           command: npm test
 
       - run:
-          command: npm run build
           name: build
+          command: npm run build
+          
 
       - run:
           name: deploy
@@ -34,5 +35,16 @@ jobs:
 
 workflows: #run order
   test_build_deply:
+    jobs:
+      - run_tests
+      
+  schedule-workflow:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                  - main
     jobs:
       - run_tests
