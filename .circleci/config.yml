@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: run prettier
-          command: npm run prettier
+          command: npx prettier --check .
 
       - run:
           name: run jest
