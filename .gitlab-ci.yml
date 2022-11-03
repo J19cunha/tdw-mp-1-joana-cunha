@@ -33,7 +33,7 @@ format:
   dependencies:
     - install
   script:
-    - npx prettier --write .
+    - npm run prettier
 
 jest:
   stage: validation
