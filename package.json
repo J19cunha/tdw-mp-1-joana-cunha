@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "jest",
+    "prettier": "prettier --write .",
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
